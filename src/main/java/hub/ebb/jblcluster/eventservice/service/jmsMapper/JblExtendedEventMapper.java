@@ -6,10 +6,10 @@ import hub.jbl.core.dto.jps.event.JpsAlarmPhase;
 import hub.jbl.core.dto.jps.event.JpsEvent;
 import hub.jbl.core.dto.jps.event.JpsEvtAlarm;
 import hub.jbl.dao.common.JblMapper;
-import hub.jbl.eventservice.model.JblAlarmExtended;
-import hub.jbl.eventservice.model.JblEventExtendedJbl;
-import hub.jbl.eventservice.model.JmsStatus;
-import hub.jbl.eventservice.model.JpsSequenceNumber;
+import hub.ebb.jblcluster.eventservice.model.JblAlarmExtended;
+import hub.ebb.jblcluster.eventservice.model.JblEventExtendedJbl;
+import hub.ebb.jblcluster.eventservice.model.JmsStatus;
+import hub.ebb.jblcluster.eventservice.model.JpsSequenceNumber;
 
 public class JblExtendedEventMapper extends JblMapper<JblEventExtendedJbl, JpsEvent> {
 

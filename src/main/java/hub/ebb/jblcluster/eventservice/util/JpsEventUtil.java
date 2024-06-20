@@ -7,7 +7,7 @@ import hub.jbl.core.dto.jps.event.JpsAlarmPhase;
 import hub.jbl.core.dto.jps.event.JpsEventSeverity;
 import hub.jbl.core.dto.jps.event.JpsEvtAlarm;
 import hub.jbl.core.dto.jps.event.SpecCodeEnum;
-import hub.jbl.eventservice.service.MainEventFactory;
+import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
 
 public class JpsEventUtil {
     private static Logger logger = JBLContext.getInstance().getLogger(JpsEventUtil.class);

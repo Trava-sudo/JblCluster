@@ -1,8 +1,8 @@
 package hub.ebb.jblcluster.eventservice.service;
 
 import hub.jbl.core.dto.jps.event.JpsEvent;
-import hub.jbl.eventservice.generator.InvalidTypeException;
-import hub.jbl.eventservice.service.impl.MainEventFactoryImpl;
+import hub.ebb.jblcluster.eventservice.generator.InvalidTypeException;
+import hub.ebb.jblcluster.eventservice.service.impl.MainEventFactoryImpl;
 
 public interface MainEventFactory {
 

@@ -5,8 +5,8 @@ import hub.jbl.core.dto.JpsEventFactoryContainer;
 import hub.jbl.core.dto.OnStreetEventFactoryContainer;
 import hub.jbl.core.dto.jps.event.JpsEvent;
 import hub.jbl.core.generator.InvalidTypeException;
-import hub.jbl.eventservice.model.JblEventFactoryContainer;
-import hub.jbl.eventservice.service.MainEventFactory;
+import hub.ebb.jblcluster.eventservice.model.JblEventFactoryContainer;
+import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
 
 public class MainEventFactoryImpl implements MainEventFactory{
 

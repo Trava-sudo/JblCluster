@@ -25,22 +25,23 @@ import hub.jbl.entity.fiscal.FiscalPrinter;
 import hub.jbl.entity.fiscal.FiscalPrinterEx;
 import hub.jbl.entity.fiscal.FiscalPrinterStatusType;
 import hub.jbl.entity.guestpass.JblGuestPass;
-import hub.jbl.eventservice.model.*;
-import hub.jbl.eventservice.model.factory.InvalidJpsEventTypeException;
-import hub.jbl.eventservice.service.jmsMapper.JblExtendedEventMapper;
-import hub.jbl.model.authentication.JblInternalPeripheral;
-import hub.jbl.model.authentication.common.JpsPeripheral;
-import hub.jbl.verticles.authentication.AuthenticationVerticle;
+import hub.ebb.jblcluster.eventservice.model.*;
+import hub.ebb.jblcluster.eventservice.model.factory.InvalidJpsEventTypeException;
+import hub.ebb.jblcluster.eventservice.service.jmsMapper.JblExtendedEventMapper;
 import hub.jms.common.model.account.invoice.PostPaymentMethodType;
 import hub.jms.common.model.configuration.JblFiscalPrinterConfiguration;
 import hub.jms.common.model.utils.JSONUtil;
-import hub.onstreet.model.event.JblEventType;
 import io.vertx.core.*;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
 import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+
+import hub.onstreet.model.event.JblEventType;
+import hub.jbl.model.authentication.JblInternalPeripheral;
+import hub.jbl.model.authentication.common.JpsPeripheral;
+import hub.jbl.verticles.authentication.AuthenticationVerticle;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -89,7 +90,7 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
         MainEventFactory factoryContainer = MainEventFactory.getInstance();
         try {
             jpsEvtAlarm = factoryContainer.buildEvent(eventSpecCode, JpsEvtAlarm.DICTIONARY_TYPE_CODE);
-        } catch (hub.jbl.eventservice.generator.InvalidTypeException e) {
+        } catch (hub.ebb.jblcluster.eventservice.generator.InvalidTypeException e) {
             JBLContext.getInstance().getLogger(JpsEventService.class).error(e);
         } catch (InvalidTypeException e) {
             JBLContext.getInstance().getLogger(JpsEventService.class).error(e);
@@ -369,7 +370,7 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
         JpsOpUsrPayCompl payCompl = new JpsOpUsrPayCompl();
         try {
             payCompl = MainEventFactory.getInstance().initEvent(payCompl);
-        } catch (hub.jbl.eventservice.generator.InvalidTypeException e) {
+        } catch (hub.ebb.jblcluster.eventservice.generator.InvalidTypeException e) {
             e.printStackTrace();
         } catch (InvalidTypeException e) {
             e.printStackTrace();
@@ -405,7 +406,7 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
 
         try {
             payCompl = MainEventFactory.getInstance().initEvent(payCompl);
-        } catch (hub.jbl.eventservice.generator.InvalidTypeException | InvalidTypeException e) {
+        } catch (hub.ebb.jblcluster.eventservice.generator.InvalidTypeException | InvalidTypeException e) {
             e.printStackTrace();
         }
 
@@ -447,7 +448,7 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
         JpsOpUsrTransit transit = new JpsOpUsrTransit();
         try {
             transit = MainEventFactory.getInstance().initEvent(transit);
-        } catch (hub.jbl.eventservice.generator.InvalidTypeException | InvalidTypeException e) {
+        } catch (hub.ebb.jblcluster.eventservice.generator.InvalidTypeException | InvalidTypeException e) {
             logger.error("ERROR SENDING SUCCESSFUL EXIT", e);
             throw new RuntimeException(e);
         }
@@ -474,7 +475,7 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
         JpsOpUsrTransit transit = new JpsOpUsrTransit();
         try {
             transit = MainEventFactory.getInstance().initEvent(transit);
-        } catch (hub.jbl.eventservice.generator.InvalidTypeException | InvalidTypeException e) {
+        } catch (hub.ebb.jblcluster.eventservice.generator.InvalidTypeException | InvalidTypeException e) {
             logger.error("ERROR SENDING VOID ENTRY", e);
             throw new RuntimeException(e);
         }

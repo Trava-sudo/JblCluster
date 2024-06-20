@@ -316,7 +316,7 @@ public class JblFactoryGenerator {
                 .addJavadoc(csvScript)
                 .build();
 
-        JavaFile javaFile = JavaFile.builder("hub.jbl.eventservice.model", JblEventFactoryContainer)
+        JavaFile javaFile = JavaFile.builder("hub.ebb.jblcluster.eventservice.model", JblEventFactoryContainer)
                 .indent("\t")
                 .build();
 

@@ -30,16 +30,16 @@ import hub.jbl.entity.jpsCommand.request.peripheral.JpsGetFiscalPrinterConfigura
 import hub.jbl.entity.jpsCommand.response.JpsCommandResponse;
 import hub.jbl.entity.parknode.PeripheralStatusValues;
 import hub.jbl.entity.peripheralStatus.peripheral.JpsPeripheralStatus;
-import hub.jbl.eventservice.model.JblAlarmExtended;
-import hub.jbl.eventservice.model.JblEventExtendedJbl;
-import hub.jbl.eventservice.model.JmsStatus;
-import hub.jbl.eventservice.model.JpsSequenceNumber;
-import hub.jbl.eventservice.model.bundle.JblEventBundle;
-import hub.jbl.eventservice.model.factory.InvalidJpsEventTypeException;
-import hub.jbl.eventservice.service.EventSequenceNumberGenerator;
-import hub.jbl.eventservice.service.JblCounterSourceService;
-import hub.jbl.eventservice.service.JpsEventService;
-import hub.jbl.eventservice.service.MainEventFactory;
+import hub.ebb.jblcluster.eventservice.model.JblAlarmExtended;
+import hub.ebb.jblcluster.eventservice.model.JblEventExtendedJbl;
+import hub.ebb.jblcluster.eventservice.model.JmsStatus;
+import hub.ebb.jblcluster.eventservice.model.JpsSequenceNumber;
+import hub.ebb.jblcluster.eventservice.model.bundle.JblEventBundle;
+import hub.ebb.jblcluster.eventservice.model.factory.InvalidJpsEventTypeException;
+import hub.ebb.jblcluster.eventservice.service.EventSequenceNumberGenerator;
+import hub.ebb.jblcluster.eventservice.service.JblCounterSourceService;
+import hub.ebb.jblcluster.eventservice.service.JpsEventService;
+import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
 import hub.jbl.model.authentication.common.JpsPeripheral;
 import hub.jbl.services.authentication.AuthenticationService;
 import hub.jms.common.model.configuration.JblFiscalPrinterConfiguration;
@@ -530,7 +530,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
                                             });
                                         });
                                     });
-                                } catch (hub.jbl.eventservice.generator.InvalidTypeException et) {
+                                } catch (hub.ebb.jblcluster.eventservice.generator.InvalidTypeException et) {
                                     logger.error("jbl.error.jpsEventService.unknownType", et);
                                     asyncResultHandler.handle(new AsyncResultBuilder<Integer>().withResult(HttpResponseStatus.BAD_REQUEST.code()).withFail().build());
                                 } catch (Exception e) {

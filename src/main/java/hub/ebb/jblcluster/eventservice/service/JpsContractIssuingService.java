@@ -3,7 +3,7 @@ package hub.ebb.jblcluster.eventservice.service;
 import hub.jbl.common.lib.context.JBLContext;
 import hub.jbl.common.lib.utils.handler.JblHandler;
 import hub.jbl.core.dto.jps.event.JpsUsrPassMediaType;
-import hub.jbl.eventservice.model.SellableProductType;
+import hub.ebb.jblcluster.eventservice.model.SellableProductType;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonArray;

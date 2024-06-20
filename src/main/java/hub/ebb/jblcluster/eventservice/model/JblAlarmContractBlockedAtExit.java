@@ -2,8 +2,8 @@ package hub.ebb.jblcluster.eventservice.model;
 
 import hub.jbl.core.visitor.jps.JmsCommonEvent;
 import hub.jbl.core.visitor.jps.JpsEventMapperVisitor;
-import hub.jbl.eventservice.mapper.JblEventMapperVisitor;
-import hub.jbl.eventservice.mapper.JmsEvent;
+import hub.ebb.jblcluster.eventservice.mapper.JblEventMapperVisitor;
+import hub.ebb.jblcluster.eventservice.mapper.JmsEvent;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 

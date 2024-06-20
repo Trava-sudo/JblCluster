@@ -5,9 +5,9 @@ import hub.jbl.core.dto.jps.event.JpsPaymentUsrOperation;
 import hub.jbl.core.dto.jps.event.ProductProfileType;
 import hub.jbl.core.visitor.jps.JmsCommonEvent;
 import hub.jbl.core.visitor.jps.JpsEventMapperVisitor;
-import hub.jbl.eventservice.mapper.JblEventMapperVisitor;
-import hub.jbl.eventservice.mapper.JblVisitableEvent;
-import hub.jbl.eventservice.mapper.JmsEvent;
+import hub.ebb.jblcluster.eventservice.mapper.JblEventMapperVisitor;
+import hub.ebb.jblcluster.eventservice.mapper.JblVisitableEvent;
+import hub.ebb.jblcluster.eventservice.mapper.JmsEvent;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 
