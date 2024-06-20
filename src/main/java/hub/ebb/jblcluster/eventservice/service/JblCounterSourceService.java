@@ -36,7 +36,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import hub.jbl.model.authentication.common.JpsPeripheral;
+import hub.jbl.core.dto.jps.authentication.common.JpsPeripheral;
 
 import java.util.*;
 import java.util.stream.Collectors;

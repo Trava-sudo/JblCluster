@@ -17,7 +17,7 @@ import hub.jbl.common.services.JblTransactionManager;
 import hub.jbl.core.dto.jps.event.*;
 import hub.jbl.core.generator.InvalidTypeException;
 import hub.jbl.dao.*;
-import hub.jbl.entity.authentication.JpsAuthenticatedPeripheral;
+import hub.jbl.common.dao.authentication.JpsAuthenticatedPeripheral;
 import hub.jbl.entity.events.JblAlarm;
 import hub.jbl.entity.events.JblEvent;
 import hub.jbl.entity.events.JblEventToContract;
@@ -38,10 +38,10 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-import hub.onstreet.model.event.JblEventType;
-import hub.jbl.model.authentication.JblInternalPeripheral;
-import hub.jbl.model.authentication.common.JpsPeripheral;
-import hub.jbl.verticles.authentication.AuthenticationVerticle;
+//import hub.onstreet.model.event.JblEventType;
+import hub.jbl.core.dto.jps.authentication.JblInternalPeripheral;
+import hub.jbl.core.dto.jps.authentication.common.JpsPeripheral;
+//import hub.jbl.verticles.authentication.AuthenticationVerticle;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -415,7 +415,7 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
         payCompl.setPrepayed(false);
         payCompl.setPrepayedEndDateTimeTs(null);
         payCompl.setEventSpecCode(usrPass.getEventSpecCode());
-        payCompl.setEventType(JblEventType.PAYMENT);
+//        payCompl.setEventType(JblEventType.PAYMENT);
         payCompl.setType(PostPaymentMethodType.BANK_TRANSFER);
         payCompl.setSessionId(0L);
         payCompl.setPeripheralType(JblInternalPeripheral.Peripheral().getPeripheralType());
@@ -496,10 +496,10 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
 
     public static void clientPostEvent(JBLContext jblContext, MultiMap headers, String authToken, IServiceDiscoveryClient serviceDiscoveryClient, JblEventExtendedJbl event, boolean safe, Handler<AsyncResult<Void>> resultHandler) {
 
-        if (StringUtils.isEmpty(event.getPeripheralId()) && StringUtils.isEmpty(event.getJpsEvent().getPeripheralType())) {
-            event.setPeripheralId(AuthenticationVerticle.INTERNAL_PERIPHERAL.getPeripheralId());
-            event.getJpsEvent().setPeripheralType(AuthenticationVerticle.INTERNAL_PERIPHERAL.getType());
-        }
+//        if (StringUtils.isEmpty(event.getPeripheralId()) && StringUtils.isEmpty(event.getJpsEvent().getPeripheralType())) {
+//            event.setPeripheralId(AuthenticationVerticle.INTERNAL_PERIPHERAL.getPeripheralId());
+//            event.getJpsEvent().setPeripheralType(AuthenticationVerticle.INTERNAL_PERIPHERAL.getType());
+//        }
 
         send(jblContext, headers, event, Objects.requireNonNullElse(authToken, JblInternalPeripheral.INTERNAL_TOKEN), safe, resultHandler);
     }

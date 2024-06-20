@@ -6,7 +6,7 @@ import hub.jbl.common.lib.context.JBLContext;
 import hub.jbl.common.lib.utils.HttpServerUtils;
 import hub.jbl.common.verticles.AbstractRestVerticle;
 import hub.jbl.core.dto.jps.event.JpsUsrPassMediaType;
-import hub.jbl.entity.authentication.JpsAuthenticatedPeripheral;
+import hub.jbl.common.dao.authentication.JpsAuthenticatedPeripheral;
 import hub.ebb.jblcluster.eventservice.model.SellableProductType;
 import hub.ebb.jblcluster.eventservice.service.JpsContractIssuingService;
 import io.vertx.core.json.JsonObject;

@@ -20,7 +20,7 @@ import hub.jbl.common.verticles.AbstractRestVerticle;
 import hub.jbl.core.dto.jps.event.*;
 import hub.jbl.dao.JblConfigDao;
 import hub.jbl.dao.JblEventDao;
-import hub.jbl.entity.authentication.JpsAuthenticatedPeripheral;
+import hub.jbl.common.dao.authentication.JpsAuthenticatedPeripheral;
 import hub.jbl.entity.events.JblEvent;
 import hub.jbl.entity.fiscal.FiscalPolicyType;
 import hub.jbl.entity.fiscal.FiscalPrinterStatusType;
@@ -40,8 +40,8 @@ import hub.ebb.jblcluster.eventservice.service.EventSequenceNumberGenerator;
 import hub.ebb.jblcluster.eventservice.service.JblCounterSourceService;
 import hub.ebb.jblcluster.eventservice.service.JpsEventService;
 import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
-import hub.jbl.model.authentication.common.JpsPeripheral;
-import hub.jbl.services.authentication.AuthenticationService;
+import hub.jbl.core.dto.jps.authentication.common.JpsPeripheral;
+//import hub.jbl.services.authentication.AuthenticationService;
 import hub.jms.common.model.configuration.JblFiscalPrinterConfiguration;
 import hub.jms.common.model.utils.JSONUtil;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -93,8 +93,8 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
     MessageConsumer<String> mc3;
     @Autowired
     private IServiceDiscoveryClient serviceDiscoveryClient;
-    @Autowired
-    private AuthenticationService authenticationService;
+//    @Autowired
+//    private AuthenticationService authenticationService;
     @Autowired
     @Qualifier("jpsAuthenticatedPeripheralAPI")
     private JpsAuthenticatedPeripheralAPI authenticatedPeripheralAPI;
@@ -218,17 +218,17 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
     }
 
     private void initFiscalPrinterStatuses() {
-        authenticationService.getAllAuthenticatedPeripherals(context()).thenAccept(listAsyncResult -> {
-            if (listAsyncResult.succeeded()) {
-                for (JpsAuthenticatedPeripheral peripheral : listAsyncResult.result()) {
-                    getFiscalPrinterConfiguration(peripheral.getPeripheralId(), fiscalPrinterConfigurationAsyncResult -> {
-                        if (fiscalPrinterConfigurationAsyncResult.succeeded()) {
-                            jpsEventService.changeOrCreatePrinterStatus(context(), peripheral.getPeripheralId(), fiscalPrinterConfigurationAsyncResult.result());
-                        }
-                    });
-                }
-            }
-        });
+//        authenticationService.getAllAuthenticatedPeripherals(context()).thenAccept(listAsyncResult -> {
+//            if (listAsyncResult.succeeded()) {
+//                for (JpsAuthenticatedPeripheral peripheral : listAsyncResult.result()) {
+//                    getFiscalPrinterConfiguration(peripheral.getPeripheralId(), fiscalPrinterConfigurationAsyncResult -> {
+//                        if (fiscalPrinterConfigurationAsyncResult.succeeded()) {
+//                            jpsEventService.changeOrCreatePrinterStatus(context(), peripheral.getPeripheralId(), fiscalPrinterConfigurationAsyncResult.result());
+//                        }
+//                    });
+//                }
+//            }
+//        });
     }
 
     private void handleChangePeripheralStatus(Message<String> message) {

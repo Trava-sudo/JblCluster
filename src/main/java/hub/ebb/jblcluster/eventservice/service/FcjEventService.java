@@ -2,7 +2,6 @@ package hub.ebb.jblcluster.eventservice.service;
 
 import com.google.common.base.Strings;
 import hub.jbl.common.lib.SessionFields;
-import hub.jbl.common.lib.builder.AsyncResultBuilder;
 import hub.jbl.common.lib.context.JBLContext;
 import hub.jbl.common.services.JblTransactionManager;
 import hub.jbl.core.dto.jps.event.JpsOpOptorLogin;
@@ -10,12 +9,13 @@ import hub.jbl.core.dto.jps.event.JpsOptorLoginError;
 import hub.jbl.core.dto.jps.event.SpecCodeEnum;
 import hub.jbl.dao.FcjOptorShiftDao;
 import hub.jbl.dao.JblEventDao;
-import hub.jbl.entity.authentication.JpsAuthenticatedPeripheral;
-import hub.jbl.model.authentication.common.JpsPeripheral;
+import hub.jbl.common.dao.authentication.JpsAuthenticatedPeripheral;
 import hub.jms.common.model.utils.JSONUtil;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import org.springframework.util.Assert;
+
+import hub.jbl.core.dto.jps.authentication.common.JpsPeripheral;
 
 import java.util.HashMap;
 import java.util.Map;
