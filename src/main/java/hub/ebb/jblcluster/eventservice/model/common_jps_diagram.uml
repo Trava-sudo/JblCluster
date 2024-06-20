@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="2861.9999999999995" y="2342.0">hub.jbl.model.jpsEvent.common.JpsUsrPassType</node>
+    <node x="3462.333333333334" y="2303.6666666666665">hub.jbl.model.jpsEvent.common.JpsLogLaneLoopAct</node>
+    <node x="4185.0" y="1655.9999999999998">hub.jbl.model.jpsEvent.common.JblAlarmBadVirtualPeripheralType</node>
+    <node x="3852.0763888888882" y="1767.9999999999998">hub.jbl.model.jpsEvent.common.JpsAlrmLinkOff</node>
+    <node x="2505.9999999999995" y="2439.0">hub.jbl.model.jpsEvent.common.JpsCacheType</node>
+    <node x="1715.9999999999995" y="2342.0">hub.jbl.model.jpsEvent.common.JpsRebootMode</node>
+    <node x="2367.9999999999995" y="2245.0">hub.jbl.model.jpsEvent.common.JpsOperatorData</node>
+    <node x="3851.0" y="366.0">hub.jbl.model.jpsEvent.common.JpsOpOptorLogin</node>
+    <node x="2192.9999999999995" y="2148.0">hub.jbl.model.jpsEvent.common.JpsOpCashierActError</node>
+    <node x="3535.0" y="366.0">hub.jbl.model.jpsEvent.common.JpsOpOptorCashSnap</node>
+    <node x="4285.232638888888" y="1376.9999999999995">hub.jbl.model.jpsEvent.common.JpsMessage</node>
+    <node x="5531.333333333334" y="2303.6666666666665">hub.jbl.model.jpsEvent.common.JpsLogLaneButtonAct</node>
+    <node x="3809.9999999999995" y="1655.9999999999998">hub.jbl.model.jpsEvent.common.JblAlarmNotPeripheralNode</node>
+    <node x="2247.9999999999995" y="1655.9999999999998">hub.jbl.model.jpsEvent.common.JblAlarmTariffModuleException</node>
+    <node x="4730.826388888889" y="580.0">hub.jbl.model.jpsEvent.common.JpsOpUsrCardIns</node>
+    <node x="3020.9999999999995" y="2439.0">hub.jbl.model.jpsEvent.common.JpsPosData</node>
+    <node x="4449.076388888888" y="1767.9999999999998">hub.jbl.model.jpsEvent.common.JpsAlrmInitFailed</node>
+    <node x="4394.024305555556" y="478.0">hub.jbl.model.jpsEvent.common.JpsUsrPaymentActivity</node>
+    <node x="2065.9999999999995" y="2245.0">hub.jbl.model.jpsEvent.common.JpsLogLoopStatus</node>
+    <node x="1451.9999999999995" y="2245.0">hub.jbl.model.jpsEvent.common.JpsLogButtonType</node>
+    <node x="2856.9999999999995" y="2148.0">hub.jbl.model.jpsEvent.common.JpsOptorLoginError</node>
+    <node x="1134.9999999999995" y="1966.9999999999998">hub.jbl.model.jpsEvent.common.JpsCashDenomination</node>
+    <node x="4716.076388888888" y="1767.9999999999998">hub.jbl.model.jpsEvent.common.JpsAlrmOutOfOrder</node>
+    <node x="2003.9999999999995" y="2342.0">hub.jbl.model.jpsEvent.common.JpsPaymentData</node>
+    <node x="2765.9999999999995" y="1966.9999999999998">hub.jbl.model.jpsEvent.common.JpsOpCashierActContext</node>
+    <node x="4623.666666666666" y="1649.3333333333333">hub.jbl.model.jpsEvent.common.JpsEvtAlarmGeneric</node>
+    <node x="2870.9999999999995" y="3009.333333333333">hub.jbl.model.jpsEvent.common.JblAlarmCashierOperatorLoginFailed</node>
+    <node x="3400.9999999999995" y="1655.9999999999998">hub.jbl.model.jpsEvent.common.JblAlarmUpdateTariffCommand</node>
+    <node x="3736.8263888888887" y="580.0">hub.jbl.model.jpsEvent.common.JmsExternalPaymentComplete</node>
+    <node x="4830.333333333334" y="2303.6666666666665">hub.jbl.model.jpsEvent.common.JpsLogReboot</node>
+    <node x="2652.9999999999995" y="1655.9999999999998">hub.jbl.model.jpsEvent.common.JblAlarmLxGateBreach</node>
+    <node x="3695.75" y="234.0">hub.jbl.model.jpsEvent.common.JpsOptorOperation</node>
+    <node x="1712.0" y="967.0">hub.jbl.common</node>
+    <node x="2396.9999999999995" y="1966.9999999999998">hub.jbl.model.jpsEvent.common.JpsCashSnapshotContext</node>
+    <node x="1851.9999999999995" y="2148.0">hub.jbl.model.jpsEvent.common.JpsUsrPassMediaType</node>
+    <node x="1080.0" y="2375.333333333333">hub.jbl.model.jpsEvent.common.JpsPaymentError</node>
+    <node x="2848.826388888888" y="1523.9999999999998">hub.jbl.model.jpsEvent.common.JpsEvtAlarm</node>
+    <node x="1758.9999999999995" y="2245.0">hub.jbl.model.jpsEvent.common.JpsUsrPassContext</node>
+    <node x="2234.9999999999995" y="2439.0">hub.jbl.model.jpsEvent.common.JpsTransitType</node>
+    <node x="1975.9999999999995" y="1966.9999999999998">hub.jbl.model.jpsEvent.common.JpsEventFactoryContainer</node>
+    <node x="1080.0" y="2472.333333333333">hub.jbl.model.jpsEvent.common.JpsCCCardData</node>
+    <node x="1686.9930555555554" y="66.66666666666663">hub.jbl.model.jpsEvent.common.JpsEvent</node>
+    <node x="2771.9999999999995" y="2439.0">hub.jbl.model.jpsEvent.common.JpsCashData</node>
+    <node x="1411.9999999999995" y="2439.0">hub.jbl.model.jpsEvent.common.JpsLogVcsType</node>
+    <node x="5071.333333333334" y="2303.6666666666665">hub.jbl.model.jpsEvent.common.JblLogAuthenticatedVirtualPeripheral</node>
+    <node x="4326.562251984128" y="2505.6666666666665">hub.jbl.model.jpsEvent.common.JpsAlrmUnknown</node>
+    <node x="1080.0" y="2278.333333333333">hub.jbl.model.jpsEvent.common.JpsLogButtonStatus</node>
+    <node x="1687.9999999999995" y="2439.0">hub.jbl.model.jpsEvent.common.JpsLogBarType</node>
+    <node x="4131.826388888889" y="580.0">hub.jbl.model.jpsEvent.common.JpsOpUsrChangeGvn</node>
+    <node x="1080.0" y="1689.333333333333">hub.jbl.model.jpsEvent.common.JblAlarmCommandError</node>
+    <node x="2290.9999999999995" y="2342.0">hub.jbl.model.jpsEvent.common.JpsLogVcsStatus</node>
+    <node x="4552.333333333334" y="2303.6666666666665">hub.jbl.model.jpsEvent.common.JpsLogLaneBarAct</node>
+    <node x="4043.333333333334" y="2303.6666666666665">hub.jbl.model.jpsEvent.common.JpsOpCashierAct</node>
+    <node x="1962.9999999999995" y="2439.0">hub.jbl.model.jpsEvent.common.JpsAlarmPhase</node>
+    <node x="4309.333333333334" y="2303.6666666666665">hub.jbl.model.jpsEvent.common.JpsLogUsrPass</node>
+    <node x="4421.409722222223" y="2171.6666666666665">hub.jbl.model.jpsEvent.common.JpsEvtLog</node>
+    <node x="3968.228918650794" y="2608.9999999999995">hub.jbl.model.jpsEvent.common.JpsAppAlrmFraud</node>
+    <node x="3757.333333333334" y="2303.6666666666665">hub.jbl.model.jpsEvent.common.JpsLogLaneVCSAct</node>
+    <node x="2951.9999999999995" y="2245.0">hub.jbl.model.jpsEvent.common.JpsOperatorRole</node>
+    <node x="4126.0" y="366.0">hub.jbl.model.jpsEvent.common.JpsPaymentUsrOperation</node>
+    <node x="4474.0" y="366.0">hub.jbl.model.jpsEvent.common.JpsOpUsrTransit</node>
+    <node x="4101.076388888889" y="1767.9999999999998">hub.jbl.model.jpsEvent.common.JpsAppAlrmDoorOpened</node>
+    <node x="3787.3263888888887" y="478.0">hub.jbl.model.jpsEvent.common.JpsOpUsrPayCompl</node>
+    <node x="2531.9999999999995" y="2148.0">hub.jbl.model.jpsEvent.common.JpsMoneyInsertData</node>
+    <node x="2970.9999999999995" y="1655.9999999999998">hub.jbl.model.jpsEvent.common.JblAlarmNewAuthenticatedDevice</node>
+    <node x="4734.0" y="366.0">hub.jbl.model.jpsEvent.common.JpsUsrCardValidationResult</node>
+    <node x="1080.0" y="2181.333333333333">hub.jbl.model.jpsEvent.common.JpsOpChangeGivenData</node>
+    <node x="1496.9999999999995" y="2148.0">hub.jbl.model.jpsEvent.common.JblCardValidationResult</node>
+    <node x="4439.826388888889" y="580.0">hub.jbl.model.jpsEvent.common.JpsOpUsrMoneyIns</node>
+    <node x="2659.9999999999995" y="2245.0">hub.jbl.model.jpsEvent.common.JpsLogLoopType</node>
+    <node x="4460.895585317459" y="234.0">hub.jbl.model.jpsEvent.common.JpsUsrOperation</node>
+    <node x="2550.9999999999995" y="3009.333333333333">hub.jbl.model.jpsEvent.common.JblAlarmLeGateBreach</node>
+    <node x="4054.3506944444434" y="132.0">hub.jbl.model.jpsEvent.common.JpsOperation</node>
+    <node x="2576.9999999999995" y="2342.0">hub.jbl.model.jpsEvent.common.JpsLogBarStatus</node>
+    <node x="1425.9999999999995" y="2342.0">hub.jbl.model.jpsEvent.common.JpsEventSeverity</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsAppAlrmFraud" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarmGeneric">
+      <point x="0.0" y="-26.0" />
+      <point x="4209.062251984127" y="2385.6666666666665" />
+      <point x="4822.5" y="1737.9999999999998" />
+      <point x="68.5" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsLogReboot" target="hub.jbl.model.jpsEvent.common.JpsEvtLog">
+      <point x="0.0" y="-26.0" />
+      <point x="4940.833333333334" y="2273.6666666666665" />
+      <point x="4544.472222222223" y="2273.6666666666665" />
+      <point x="33.5625" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsAlrmLinkOff" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarmGeneric">
+      <point x="0.0" y="-26.0" />
+      <point x="3966.5763888888882" y="1727.9999999999998" />
+      <point x="4639.833333333332" y="1727.9999999999998" />
+      <point x="-114.16666666666652" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsMessage" target="hub.jbl.model.jpsEvent.common.JpsEvent">
+      <point x="0.0" y="-26.0" />
+      <point x="4425.232638888888" y="1396.9999999999998" />
+      <point x="1742.0763888888887" y="107.0" />
+      <point x="-41.75" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblAlarmNewAuthenticatedDevice" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="3175.9999999999995" y="1635.9999999999998" />
+      <point x="2958.826388888888" y="1635.9999999999998" />
+      <point x="10.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblAlarmBadVirtualPeripheralType" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="4391.0" y="1605.9999999999998" />
+      <point x="3018.826388888888" y="1605.9999999999998" />
+      <point x="70.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsAlrmOutOfOrder" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarmGeneric">
+      <point x="0.0" y="-26.0" />
+      <point x="4855.076388888888" y="1747.9999999999998" />
+      <point x="4776.833333333332" y="1747.9999999999998" />
+      <point x="22.833333333333485" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblLogAuthenticatedVirtualPeripheral" target="hub.jbl.model.jpsEvent.common.JpsEvtLog">
+      <point x="0.0" y="-26.0" />
+      <point x="5291.333333333334" y="2263.6666666666665" />
+      <point x="4566.847222222223" y="2263.6666666666665" />
+      <point x="55.9375" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsAppAlrmDoorOpened" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarmGeneric">
+      <point x="0.0" y="-26.0" />
+      <point x="4265.076388888889" y="1737.9999999999998" />
+      <point x="4685.5" y="1737.9999999999998" />
+      <point x="-68.5" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOpUsrCardIns" target="hub.jbl.model.jpsEvent.common.JpsUsrPaymentActivity">
+      <point x="0.0" y="-26.0" />
+      <point x="4855.326388888889" y="555.0" />
+      <point x="4644.024305555556" y="555.0" />
+      <point x="100.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblAlarmLeGateBreach" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="2700.9999999999995" y="2959.333333333333" />
+      <point x="2878.826388888888" y="1605.9999999999998" />
+      <point x="-70.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOpCashierAct" target="hub.jbl.model.jpsEvent.common.JpsEvtLog">
+      <point x="0.0" y="-26.0" />
+      <point x="4166.333333333334" y="2273.6666666666665" />
+      <point x="4477.347222222223" y="2273.6666666666665" />
+      <point x="-33.5625" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOptorOperation" target="hub.jbl.model.jpsEvent.common.JpsOperation">
+      <point x="0.0" y="-26.0" />
+      <point x="3830.75" y="209.0" />
+      <point x="4107.350694444443" y="209.0" />
+      <point x="-53.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOpUsrPayCompl" target="hub.jbl.model.jpsEvent.common.JpsPaymentUsrOperation">
+      <point x="0.0" y="-26.0" />
+      <point x="3924.3263888888887" y="458.0" />
+      <point x="4208.0" y="458.0" />
+      <point x="-82.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblAlarmCashierOperatorLoginFailed" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="3089.4999999999995" y="2969.333333333333" />
+      <point x="2898.826388888888" y="1615.9999999999998" />
+      <point x="-50.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblAlarmLxGateBreach" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="2801.9999999999995" y="1635.9999999999998" />
+      <point x="2938.826388888888" y="1635.9999999999998" />
+      <point x="-10.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOpOptorCashSnap" target="hub.jbl.model.jpsEvent.common.JpsOptorOperation">
+      <point x="0.0" y="-26.0" />
+      <point x="3683.0" y="346.0" />
+      <point x="3763.25" y="346.0" />
+      <point x="-67.5" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOperation" target="hub.jbl.model.jpsEvent.common.JpsEvent">
+      <point x="0.0" y="-26.0" />
+      <point x="4160.350694444443" y="107.0" />
+      <point x="1825.5763888888887" y="107.0" />
+      <point x="41.75" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsAlrmUnknown" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarmGeneric">
+      <point x="0.0" y="-26.0" />
+      <point x="4482.062251984127" y="2375.6666666666665" />
+      <point x="4868.166666666666" y="1727.9999999999998" />
+      <point x="114.16666666666652" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JmsExternalPaymentComplete" target="hub.jbl.model.jpsEvent.common.JpsOpUsrPayCompl">
+      <point x="0.0" y="-26.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblAlarmUpdateTariffCommand" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="3595.4999999999995" y="1625.9999999999998" />
+      <point x="2978.826388888888" y="1625.9999999999998" />
+      <point x="30.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblAlarmTariffModuleException" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="2440.4999999999995" y="1625.9999999999998" />
+      <point x="2918.826388888888" y="1625.9999999999998" />
+      <point x="-30.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOpOptorLogin" target="hub.jbl.model.jpsEvent.common.JpsOptorOperation">
+      <point x="0.0" y="-26.0" />
+      <point x="3978.5" y="346.0" />
+      <point x="3898.25" y="346.0" />
+      <point x="67.5" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsLogUsrPass" target="hub.jbl.model.jpsEvent.common.JpsEvtLog">
+      <point x="0.0" y="-26.0" />
+      <point x="4420.833333333334" y="2283.6666666666665" />
+      <point x="4499.722222222223" y="2283.6666666666665" />
+      <point x="-11.1875" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsLogLaneLoopAct" target="hub.jbl.model.jpsEvent.common.JpsEvtLog">
+      <point x="0.0" y="-26.0" />
+      <point x="3599.833333333334" y="2253.6666666666665" />
+      <point x="4432.597222222223" y="2253.6666666666665" />
+      <point x="-78.3125" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsEvtAlarm" target="hub.jbl.model.jpsEvent.common.JpsMessage">
+      <point x="0.0" y="-26.0" />
+      <point x="2948.826388888888" y="1498.9999999999998" />
+      <point x="4375.232638888888" y="1498.9999999999998" />
+      <point x="-50.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsLogLaneButtonAct" target="hub.jbl.model.jpsEvent.common.JpsEvtLog">
+      <point x="0.0" y="-26.0" />
+      <point x="5676.333333333334" y="2253.6666666666665" />
+      <point x="4589.222222222223" y="2253.6666666666665" />
+      <point x="78.3125" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsUsrOperation" target="hub.jbl.model.jpsEvent.common.JpsOperation">
+      <point x="0.0" y="-26.0" />
+      <point x="4582.895585317459" y="209.0" />
+      <point x="4213.350694444443" y="209.0" />
+      <point x="53.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsPaymentUsrOperation" target="hub.jbl.model.jpsEvent.common.JpsUsrOperation">
+      <point x="0.0" y="-26.0" />
+      <point x="4290.0" y="346.0" />
+      <point x="4501.562251984126" y="346.0" />
+      <point x="-81.33333333333303" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsUsrPaymentActivity" target="hub.jbl.model.jpsEvent.common.JpsPaymentUsrOperation">
+      <point x="0.0" y="-26.0" />
+      <point x="4544.024305555556" y="458.0" />
+      <point x="4372.0" y="458.0" />
+      <point x="82.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsLogLaneVCSAct" target="hub.jbl.model.jpsEvent.common.JpsEvtLog">
+      <point x="0.0" y="-26.0" />
+      <point x="3890.333333333334" y="2263.6666666666665" />
+      <point x="4454.972222222223" y="2263.6666666666665" />
+      <point x="-55.9375" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblAlarmNotPeripheralNode" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="3987.4999999999995" y="1615.9999999999998" />
+      <point x="2998.826388888888" y="1615.9999999999998" />
+      <point x="50.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JblAlarmCommandError" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="1238.0" y="1629.333333333333" />
+      <point x="2858.826388888888" y="1595.9999999999998" />
+      <point x="-90.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsLogLaneBarAct" target="hub.jbl.model.jpsEvent.common.JpsEvtLog">
+      <point x="0.0" y="-26.0" />
+      <point x="4681.333333333334" y="2283.6666666666665" />
+      <point x="4522.097222222223" y="2283.6666666666665" />
+      <point x="11.1875" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsAlrmInitFailed" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarmGeneric">
+      <point x="0.0" y="-26.0" />
+      <point x="4572.576388888888" y="1747.9999999999998" />
+      <point x="4731.166666666666" y="1747.9999999999998" />
+      <point x="-22.833333333333485" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOpUsrChangeGvn" target="hub.jbl.model.jpsEvent.common.JpsUsrPaymentActivity">
+      <point x="0.0" y="-26.0" />
+      <point x="4275.826388888889" y="555.0" />
+      <point x="4444.024305555556" y="555.0" />
+      <point x="-100.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOpUsrMoneyIns" target="hub.jbl.model.jpsEvent.common.JpsUsrPaymentActivity">
+      <point x="0.0" y="-26.0" />
+      <point x="4575.326388888889" y="555.0" />
+      <point x="4544.024305555556" y="555.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsUsrCardValidationResult" target="hub.jbl.model.jpsEvent.common.JpsUsrOperation">
+      <point x="0.0" y="-26.0" />
+      <point x="4907.0" y="346.0" />
+      <point x="4664.228918650792" y="346.0" />
+      <point x="81.33333333333303" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsOpUsrTransit" target="hub.jbl.model.jpsEvent.common.JpsUsrOperation">
+      <point x="0.0" y="-26.0" />
+      <point x="4594.0" y="346.0" />
+      <point x="4582.895585317459" y="346.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsEvtLog" target="hub.jbl.model.jpsEvent.common.JpsMessage">
+      <point x="0.0" y="-26.0" />
+      <point x="4510.909722222223" y="2146.6666666666665" />
+      <point x="4475.232638888888" y="1498.9999999999998" />
+      <point x="50.0" y="26.0" />
+    </edge>
+    <edge source="hub.jbl.model.jpsEvent.common.JpsEvtAlarmGeneric" target="hub.jbl.model.jpsEvent.common.JpsEvtAlarm">
+      <point x="0.0" y="-26.0" />
+      <point x="4754.0" y="1595.9999999999998" />
+      <point x="3038.826388888888" y="1595.9999999999998" />
+      <point x="90.0" y="26.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5000000000000001" x="3728.0" y="640.9999999999999" />
+  <SelectedNodes>
+    <node>hub.jbl.model.jpsEvent.common.JpsOperation</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
