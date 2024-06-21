@@ -104,10 +104,10 @@
             <artifactId>jbl-core</artifactId>
             <version>1.30.0.0-jbl-cluster-SNAPSHOT</version>
             <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
+<!--                <exclusion>-->
+<!--                    <groupId>org.slf4j</groupId>-->
+<!--                    <artifactId>slf4j-api</artifactId>-->
+<!--                </exclusion>-->
                 <exclusion>
                     <groupId>hub.ebb</groupId>
                     <artifactId>jbl-core-swagger</artifactId>
