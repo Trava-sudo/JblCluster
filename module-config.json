@@ -2,5 +2,21 @@
   "currentIp" : "127.0.0.1",
   "jblIp" : "127.0.0.1",
   "clusterName" : "jbl-cluster",
-  "moduleName" : "jps.event.service.module"
-}
+  "moduleName" : "jps.event.service.module",
+  "jbl.instance.identifier" : "87456cd5-57a4-4364-9dbf-0c18dc130ca9",
+  "pg.jdbc.cachePrepStmts" : "true",
+  "pg.jdbc.connectionTimeout" : "8",
+  "pg.jdbc.driverClassName" : "org.postgresql.Driver",
+  "pg.jdbc.initializationFailTimeout" : 3600000,
+  "pg.jdbc.jdbcUrl" : "jdbc:postgresql://host_db_jbl:5432/jbl",
+  "pg.jdbc.leakDetectionThreshold" : "2500",
+  "pg.jdbc.maximumPoolSize" : "30",
+  "pg.jdbc.minimumIdle" : "10",
+  "pg.jdbc.password" : "jbl",
+  "pg.jdbc.poolName" : "JBL POSTGRESQL DATA SOURCE",
+  "pg.jdbc.preferredTestquery" : "select 1",
+  "pg.jdbc.prepStmtCacheSize" : "256",
+  "pg.jdbc.prepStmtCacheSqlLimit" : "true",
+  "pg.jdbc.useServerPrepStmts" : "256",
+  "pg.jdbc.username" : "jbl"
+  }

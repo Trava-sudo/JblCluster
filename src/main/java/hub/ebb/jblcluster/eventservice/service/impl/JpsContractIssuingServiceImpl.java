@@ -1,6 +1,8 @@
 package hub.ebb.jblcluster.eventservice.service.impl;
 
 import com.google.common.base.Strings;
+import hub.ebb.jblcluster.eventservice.model.SellableProductType;
+import hub.ebb.jblcluster.eventservice.service.JpsContractIssuingService;
 import hub.jbl.common.lib.api.customer.CustomerAPI;
 import hub.jbl.common.lib.api.productprofile.ProductAPI;
 import hub.jbl.common.lib.api.validation.DiscountOnPaymentTypeAPI;
@@ -21,22 +23,24 @@ import hub.jbl.dao.util.SQLConnectionWrapper;
 import hub.jbl.entity.cardvalidation.JblTransientUsrPass;
 import hub.jbl.entity.membership.JblMembership;
 import hub.jbl.entity.productProfile.JblProductProfile;
-import hub.ebb.jblcluster.eventservice.model.SellableProductType;
-import hub.jbl.common.applybypaymenttype.CalculationOfDiscountOnPaymentType;
-import hub.ebb.jblcluster.eventservice.service.JpsContractIssuingService;
 import hub.jms.common.model.product.profile.ProductProfileType;
 import hub.jms.common.model.product.profile.complextype.DurationEndingType;
 import hub.jms.common.model.product.profile.complextype.DurationStartingType;
 import hub.jms.common.model.product.profile.complextype.TimeUnit;
 import hub.jms.common.model.utils.JSONUtil;
-import io.vertx.core.*;
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Future;
+import io.vertx.core.Handler;
+import io.vertx.core.Promise;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class JpsContractIssuingServiceImpl implements JpsContractIssuingService {

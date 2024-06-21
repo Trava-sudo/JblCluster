@@ -6,8 +6,11 @@ import hub.ebb.jblcluster.eventservice.service.JblCounterSourceService;
 import hub.ebb.jblcluster.eventservice.service.JpsContractIssuingService;
 import hub.ebb.jblcluster.eventservice.service.JpsEventService;
 import hub.ebb.jblcluster.eventservice.service.impl.JpsContractIssuingServiceImpl;
+import hub.ebb.jblcluster.verticles.PingerVerticle;
 import hub.ebb.jblcluster.verticles.RestVerticle;
 import hub.ebb.jblcluster.verticles.jpsEvent.JpsEventVerticle;
+import hub.jbl.cache.JblConfigCache;
+import hub.jbl.cache.impl.JblConfigCacheImpl;
 import hub.jbl.common.lib.R;
 import hub.jbl.common.lib.api.customer.CustomerAPI;
 import hub.jbl.common.lib.api.event.EventAPI;
@@ -17,6 +20,8 @@ import hub.jbl.common.lib.api.productprofile.ProductAPI;
 import hub.jbl.common.lib.api.validation.DiscountOnPaymentTypeAPI;
 import hub.jbl.common.lib.utils.JblPaths;
 import hub.jbl.common.lib.utils.impl.JblPathsImpl;
+import hub.jbl.common.lib.utils.serviceDiscovery.IServiceDiscoveryClient;
+import hub.jbl.common.lib.utils.serviceDiscovery.impl.ServiceDiscoveryClientImpl;
 import hub.jbl.common.services.JblTransactionManager;
 import hub.jbl.common.services.JblTransactionManagerImpl;
 import hub.jbl.common.session.RemoteDiscountSessionData;
@@ -41,6 +46,26 @@ import java.util.concurrent.TimeUnit;
  */
 public class JpsEventSpringConfig extends AppSpringConfig {
 
+
+    @Bean
+    public PingerVerticle pingerVerticle() {
+        return new PingerVerticle();
+    }
+
+    @Bean
+    public IServiceDiscoveryClient serviceDiscoveryClient() {
+        return new ServiceDiscoveryClientImpl();
+    }
+
+    @Bean
+    public JblConfigCache jblConfigCache() {
+        return new JblConfigCacheImpl();
+    }
+
+    @Bean
+    public RemoteDiscountDao remoteDiscountDao() {
+        return new RemoteDiscountDaoImpl();
+    }
 
     @Bean
     public JpsEventService jpsEventService() {

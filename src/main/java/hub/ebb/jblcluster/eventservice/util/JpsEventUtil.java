@@ -1,5 +1,6 @@
 package hub.ebb.jblcluster.eventservice.util;
 
+import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
 import hub.jbl.common.lib.context.JBLContext;
 import hub.jbl.common.lib.date.DateUtils;
 import hub.jbl.common.lib.log.Logger;
@@ -7,7 +8,6 @@ import hub.jbl.core.dto.jps.event.JpsAlarmPhase;
 import hub.jbl.core.dto.jps.event.JpsEventSeverity;
 import hub.jbl.core.dto.jps.event.JpsEvtAlarm;
 import hub.jbl.core.dto.jps.event.SpecCodeEnum;
-import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
 
 public class JpsEventUtil {
     private static Logger logger = JBLContext.getInstance().getLogger(JpsEventUtil.class);

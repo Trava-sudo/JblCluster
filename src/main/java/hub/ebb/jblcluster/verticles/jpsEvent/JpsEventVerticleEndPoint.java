@@ -1,16 +1,5 @@
 package hub.ebb.jblcluster.verticles.jpsEvent;
 
-import hub.jbl.core.dto.jps.GenericResponse;
-import hub.jbl.core.dto.jps.event.JpsEvent;
-//import hub.jbl.core.swagger.generator.EndPointVerticleAnnotation;
-//import io.swagger.v3.oas.annotations.Operation;
-//import io.swagger.v3.oas.annotations.Parameter;
-//import io.swagger.v3.oas.annotations.enums.ParameterIn;
-//import io.swagger.v3.oas.annotations.media.Content;
-//import io.swagger.v3.oas.annotations.media.Encoding;
-//import io.swagger.v3.oas.annotations.media.Schema;
-//import io.swagger.v3.oas.annotations.parameters.RequestBody;
-//import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.vertx.ext.web.RoutingContext;
 
 

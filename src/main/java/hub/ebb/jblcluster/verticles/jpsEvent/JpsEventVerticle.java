@@ -43,17 +43,6 @@ import hub.jbl.entity.jpsCommand.request.peripheral.JpsGetFiscalPrinterConfigura
 import hub.jbl.entity.jpsCommand.response.JpsCommandResponse;
 import hub.jbl.entity.parknode.PeripheralStatusValues;
 import hub.jbl.entity.peripheralStatus.peripheral.JpsPeripheralStatus;
-import hub.ebb.jblcluster.eventservice.model.JblAlarmExtended;
-import hub.ebb.jblcluster.eventservice.model.JblEventExtendedJbl;
-import hub.ebb.jblcluster.eventservice.model.JmsStatus;
-import hub.ebb.jblcluster.eventservice.model.JpsSequenceNumber;
-import hub.ebb.jblcluster.eventservice.model.bundle.JblEventBundle;
-import hub.ebb.jblcluster.eventservice.model.factory.InvalidJpsEventTypeException;
-import hub.ebb.jblcluster.eventservice.service.EventSequenceNumberGenerator;
-import hub.ebb.jblcluster.eventservice.service.JblCounterSourceService;
-import hub.ebb.jblcluster.eventservice.service.JpsEventService;
-import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
-import hub.jbl.core.dto.jps.authentication.common.JpsPeripheral;
 import hub.jms.common.model.configuration.JblFiscalPrinterConfiguration;
 import hub.jms.common.model.utils.JSONUtil;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -69,7 +58,6 @@ import io.vertx.ext.web.api.service.ServiceRequest;
 import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.serviceproxy.ServiceBinder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -104,8 +92,8 @@ public class JpsEventVerticle extends AbstractJblVerticle implements JpsEventVer
     MessageConsumer<String> mc1;
     MessageConsumer<String> mc2;
     MessageConsumer<String> mc3;
-    @Autowired
-    private IServiceDiscoveryClient serviceDiscoveryClient;
+//    @Autowired
+//    private IServiceDiscoveryClient serviceDiscoveryClient;
     //    @Autowired
 //    private AuthenticationService authenticationService;
     @Autowired
