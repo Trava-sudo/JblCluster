@@ -5,3 +5,7 @@
 /.idea/misc.xml
 /.idea/uiDesigner.xml
 /.idea/vcs.xml
+**/target/**
+.idea/**
+**/tmp/*
+*.iml
