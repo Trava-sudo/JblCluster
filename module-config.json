@@ -18,5 +18,6 @@
   "pg.jdbc.prepStmtCacheSize" : "256",
   "pg.jdbc.prepStmtCacheSqlLimit" : "true",
   "pg.jdbc.useServerPrepStmts" : "256",
-  "pg.jdbc.username" : "jbl"
+  "pg.jdbc.username" : "jbl",
+  "jps.event.verticle.port": 56000
   }

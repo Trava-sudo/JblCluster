@@ -4,10 +4,7 @@ package hub.ebb.jblcluster;
 import hub.ebb.jblcluster.verticles.PingerVerticle;
 import hub.ebb.jblcluster.verticles.RestVerticle;
 import hub.ebb.jblcluster.verticles.jpsEvent.JpsEventVerticle;
-import io.vertx.core.AbstractVerticle;
-import io.vertx.core.DeploymentOptions;
-import io.vertx.core.Future;
-import io.vertx.core.Promise;
+import io.vertx.core.*;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -41,7 +38,7 @@ public class DeployerVerticle extends AbstractVerticle {
             if (event.succeeded()) {
                 ApplicationContext applicationContext = event.result();
                 deployVerticle(applicationContext.getBean(PingerVerticle.class)).
-                        compose(f -> deployVerticle(applicationContext.getBean(JpsEventVerticle.class))).
+                        compose(f -> deployWorkerVerticle(applicationContext.getBean(JpsEventVerticle.class))).
                         compose(f -> deployVerticle(applicationContext.getBean(RestVerticle.class))).
                         onFailure(error -> startPromise.fail(error)).
                         onSuccess(success -> startPromise.complete());
@@ -55,6 +52,22 @@ public class DeployerVerticle extends AbstractVerticle {
     private Future<String> deployVerticle(AbstractVerticle verticle) {
         Promise<String> promise = Promise.promise();
         final DeploymentOptions options = new DeploymentOptions().setConfig(config());
+        vertx.deployVerticle(verticle, options, b -> {
+            if (b.succeeded()) {
+                logger.info("Correctly deployed verticle " + verticle.getClass().getSimpleName());
+                promise.handle(Future.succeededFuture());
+            } else {
+                logger.error("Cannot deploy verticle " + verticle.getClass().getSimpleName(), b.cause());
+                promise.handle(Future.failedFuture(b.cause()));
+            }
+        });
+
+        return promise.future();
+    }
+
+    private Future<String> deployWorkerVerticle(AbstractVerticle verticle) {
+        Promise<String> promise = Promise.promise();
+        final DeploymentOptions options = new DeploymentOptions().setConfig(config()).setThreadingModel(ThreadingModel.WORKER).setWorkerPoolSize(30);
         vertx.deployVerticle(verticle, options, b -> {
             if (b.succeeded()) {
                 logger.info("Correctly deployed verticle " + verticle.getClass().getSimpleName());
