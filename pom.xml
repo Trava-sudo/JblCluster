@@ -100,23 +100,10 @@
             <version>2.22.1</version>
         </dependency>
         <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>5.1.0</version>
-        </dependency>
-        <dependency>
             <groupId>hub.ebb</groupId>
             <artifactId>jbl-core</artifactId>
             <version>1.30.0.0-jbl-cluster-SNAPSHOT</version>
             <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.zaxxer</groupId>
-                    <artifactId>HikariCP</artifactId>
-                </exclusion>
                 <exclusion>
                     <groupId>hub.ebb</groupId>
                     <artifactId>jbl-core-swagger</artifactId>
