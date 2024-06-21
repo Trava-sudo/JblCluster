@@ -1,0 +1,6 @@
+{
+  "currentIp" : "127.0.0.1",
+  "jblIp" : "127.0.0.1",
+  "clusterName" : "jbl-cluster",
+  "moduleName" : "jps.event.service.module"
+}
