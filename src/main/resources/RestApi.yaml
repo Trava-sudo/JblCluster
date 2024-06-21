@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: Jps Event verticle
+  description: 'This is a tentative to cluster some JBL Verticles. JpsEventVerticle '
+  version: 1.0.0
+  contact: {}
+paths:
+  /jbl/api/peripherals/{peripheralId}/event/{sequenceNumberTS}/{sequenceNumberGMT}/{sequenceNumberCounter}:
+    post:
+      summary: doEventManagement
+      description: doEventManagement
+      operationId: doEventManagement
+      parameters:
+        - name: authToken
+          in: header
+          schema:
+            type: string
+            example: <string>
+          required: true
+          description: >-
+            Authentication token give by the authentication service for the
+            peripheral that made the validation
+        - name: peripheralId
+          in: path
+          schema:
+            type: string
+            example: <string>
+          required: true
+          description: >-
+            The id of peripheral. It has to be unique for each peripheral.
+            Typically it's the MAC ADDRESS
+        - name: sequenceNumberTS
+          in: path
+          schema:
+            type: string
+            example: <string>
+          required: true
+          description: >-
+            Unix Time stamp of the event happened on the peripheral. It has to
+            be UTC
+        - name: sequenceNumberGMT
+          in: path
+          schema:
+            type: string
+            example: <string>
+          required: true
+          description: GMT of the timestamp of the event
+        - name: sequenceNumberCounter
+          in: path
+          schema:
+            type: string
+            example: <string>
+          required: true
+          description: Counter of the event made on Peripheral
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: 
+              type: string
+      responses:
+        '200':
+          description: ''

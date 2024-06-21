@@ -1,65 +1,70 @@
 package hub.ebb.jblcluster.verticles;
 
-import io.vertx.core.AbstractVerticle;
+import hub.ebb.jblcluster.eventservice.web.JpsEventsWepApi;
+import hub.ebb.jblcluster.verticles.jpsEvent.AbstractPlusRegisterProxyVerticle;
+import hub.ebb.jblcluster.verticles.jpsEvent.JpsEventVerticle;
+import hub.ebb.jblcluster.eventservice.web.ValidationFactoryWebApi;
+import hub.jbl.common.lib.context.JBLContext;
+import hub.jbl.common.lib.log.Logger;
 import io.vertx.core.Promise;
+import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServerOptions;
-import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.api.service.RouteToEBServiceHandler;
+import io.vertx.ext.web.openapi.RouterBuilder;
 
-import java.util.Date;
+public class RestVerticle extends AbstractPlusRegisterProxyVerticle {
 
-public class RestVerticle extends AbstractVerticle {
+    Logger logger = JBLContext.getInstance().getLogger(getClass());
+    private Integer listeningPort;
 
-    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public void start(Promise<Void> startPromise) throws Exception {
-
-        final Router router = Router.router(vertx);
-        router.get("/test-app/verification/get").handler(this::get);
-        router.post("/test-app/verification/post").handler(this::post);
-        router.put("/test-app/verification/put").handler(this::put);
-        router.delete("/test-app/verification/delete").handler(this::delete);
-        HttpServerOptions httpServerOptions = new HttpServerOptions().setIdleTimeout(60).setTcpKeepAlive(true).setReuseAddress(true);
-        vertx.createHttpServer(httpServerOptions).requestHandler(router).listen(64327, result -> {
-            if (result.succeeded()) {
-                logger.info("Rest Endpoint is running on port " + 64327);
-                startPromise.complete();
-            } else {
-                logger.error("Failed listening on port: " + 64327, result.cause());
-                startPromise.fail(result.cause());
-            }
-        });
+        bindServiceToProxy("api.event", JpsEventsWepApi.class, new JpsEventVerticle());
+        createRouterFromDocumentation(vertx, startPromise);
     }
 
-    private void delete(RoutingContext routingContext) {
-        reply("delete", routingContext);
+    private void createRouterFromDocumentation(Vertx vertx, Promise<Void> startPromise) {
+        // Evaluate implementation of PostmanAPI for collection retrieval
+        RouterBuilder.create(vertx, "./RestAPI.json")
+                .onSuccess(builder -> {
+                    setListeningPort(56789);
+                    defineOperations(builder);
+                    final Router router = builder.createRouter();
+                    HttpServerOptions httpServerOptions = new HttpServerOptions().setIdleTimeout(60).setTcpKeepAlive(true).setReuseAddress(true);
+                    vertx.createHttpServer(httpServerOptions).requestHandler(router).listen(getListeningPort(), result -> {
+                        if (result.succeeded()) {
+                            logger.info(String.format("Rest Endpoint is running on port %s", getListeningPort()));
+                            startPromise.complete();
+                        } else {
+                            logger.error(String.format("Failed listening on port: %s", getListeningPort()), result.cause());
+                            startPromise.fail(result.cause());
+                        }
+                    });
+                })
+                .onFailure(error -> {
+                    logger.error(error);
+                    startPromise.fail(error);
+                });
     }
 
-    private void put(RoutingContext routingContext) {
-        reply("put", routingContext);
+
+
+    private void defineOperations(RouterBuilder builder) {
+        var validationFactory = new ValidationFactoryWebApi();
+        builder.operation("doEventManagement")
+                .handler(validationFactory.getValidationHandler(vertx, "doEventManagement"))
+                .handler(RouteToEBServiceHandler.build(vertx.eventBus(), validationFactory.getAddress(), "doEventManagement"));
+
     }
 
-    private void post(RoutingContext routingContext) {
-        reply("post", routingContext);
+    public Integer getListeningPort() {
+        return listeningPort;
     }
 
-    private void get(RoutingContext routingContext) {
-        reply("get", routingContext);
-    }
-
-    private void reply(String delete, RoutingContext routingContext) {
-
-        JsonObject reply = new JsonObject();
-        reply.put("method", delete);
-        reply.put("time", new Date().toString());
-        reply.put("path", routingContext.request().path());
-        JsonObject bodyAsJson = routingContext.getBodyAsJson();
-        if (bodyAsJson != null)
-            reply.put("request", bodyAsJson);
-        routingContext.response().setStatusCode(200).end(reply.encodePrettily());
+    public void setListeningPort(Integer listeningPort) {
+        this.listeningPort = listeningPort;
     }
 }
+

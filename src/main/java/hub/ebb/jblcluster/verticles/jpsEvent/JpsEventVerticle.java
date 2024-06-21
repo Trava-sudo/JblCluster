@@ -1,6 +1,18 @@
 package hub.ebb.jblcluster.verticles.jpsEvent;
 
+import hub.ebb.jblcluster.eventservice.model.JblAlarmExtended;
+import hub.ebb.jblcluster.eventservice.model.JblEventExtendedJbl;
+import hub.ebb.jblcluster.eventservice.model.JmsStatus;
+import hub.ebb.jblcluster.eventservice.model.JpsSequenceNumber;
+import hub.ebb.jblcluster.eventservice.model.bundle.JblEventBundle;
+import hub.ebb.jblcluster.eventservice.model.factory.InvalidJpsEventTypeException;
+import hub.ebb.jblcluster.eventservice.service.EventSequenceNumberGenerator;
+import hub.ebb.jblcluster.eventservice.service.JblCounterSourceService;
+import hub.ebb.jblcluster.eventservice.service.JpsEventService;
+import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
+import hub.ebb.jblcluster.eventservice.web.JpsEventsWepApi;
 import hub.jbl.common.JblConfig;
+import hub.jbl.common.dao.authentication.JpsAuthenticatedPeripheral;
 import hub.jbl.common.lib.JblAPIEventBusBundle;
 import hub.jbl.common.lib.R;
 import hub.jbl.common.lib.SessionFields;
@@ -14,13 +26,14 @@ import hub.jbl.common.lib.date.DateUtils;
 import hub.jbl.common.lib.log.Logger;
 import hub.jbl.common.lib.utils.HttpServerUtils;
 import hub.jbl.common.lib.utils.serviceDiscovery.IServiceDiscoveryClient;
+import hub.jbl.common.lib.webapi.WebApiUtil;
 import hub.jbl.common.services.JblTransactionManager;
 import hub.jbl.common.session.RemoteDiscountSessionData;
-import hub.jbl.common.verticles.AbstractRestVerticle;
+import hub.jbl.common.verticles.AbstractJblVerticle;
+import hub.jbl.core.dto.jps.authentication.common.JpsPeripheral;
 import hub.jbl.core.dto.jps.event.*;
 import hub.jbl.dao.JblConfigDao;
 import hub.jbl.dao.JblEventDao;
-import hub.jbl.common.dao.authentication.JpsAuthenticatedPeripheral;
 import hub.jbl.entity.events.JblEvent;
 import hub.jbl.entity.fiscal.FiscalPolicyType;
 import hub.jbl.entity.fiscal.FiscalPrinterStatusType;
@@ -30,18 +43,6 @@ import hub.jbl.entity.jpsCommand.request.peripheral.JpsGetFiscalPrinterConfigura
 import hub.jbl.entity.jpsCommand.response.JpsCommandResponse;
 import hub.jbl.entity.parknode.PeripheralStatusValues;
 import hub.jbl.entity.peripheralStatus.peripheral.JpsPeripheralStatus;
-import hub.ebb.jblcluster.eventservice.model.JblAlarmExtended;
-import hub.ebb.jblcluster.eventservice.model.JblEventExtendedJbl;
-import hub.ebb.jblcluster.eventservice.model.JmsStatus;
-import hub.ebb.jblcluster.eventservice.model.JpsSequenceNumber;
-import hub.ebb.jblcluster.eventservice.model.bundle.JblEventBundle;
-import hub.ebb.jblcluster.eventservice.model.factory.InvalidJpsEventTypeException;
-import hub.ebb.jblcluster.eventservice.service.EventSequenceNumberGenerator;
-import hub.ebb.jblcluster.eventservice.service.JblCounterSourceService;
-import hub.ebb.jblcluster.eventservice.service.JpsEventService;
-import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
-import hub.jbl.core.dto.jps.authentication.common.JpsPeripheral;
-//import hub.jbl.services.authentication.AuthenticationService;
 import hub.jms.common.model.configuration.JblFiscalPrinterConfiguration;
 import hub.jms.common.model.utils.JSONUtil;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -52,8 +53,9 @@ import io.vertx.core.Promise;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.eventbus.MessageConsumer;
 import io.vertx.core.json.JsonObject;
-import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.api.service.ServiceRequest;
+import io.vertx.ext.web.api.service.ServiceResponse;
 import io.vertx.serviceproxy.ServiceBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -70,7 +72,7 @@ import java.util.function.Supplier;
 /**
  * Created by Stefano.Coletta on 08/11/2016.
  */
-public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVerticleEndPoint, EventAPI {
+public class JpsEventVerticle extends AbstractJblVerticle implements JpsEventVerticleEndPoint, EventAPI, JpsEventsWepApi {
 
     public static String JPS_EVENT_MICROSERVICE_PATH = "\\/jbl\\/api\\/peripherals\\/.*\\/event\\/.*\\/.*\\/.*";
 
@@ -93,7 +95,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
     MessageConsumer<String> mc3;
     @Autowired
     private IServiceDiscoveryClient serviceDiscoveryClient;
-//    @Autowired
+    //    @Autowired
 //    private AuthenticationService authenticationService;
     @Autowired
     @Qualifier("jpsAuthenticatedPeripheralAPI")
@@ -106,27 +108,27 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
     private Map<String, String> deviceStatuses;
 
 
-    @Override
-    protected boolean isSwaggerImplemented() {
-        return true;
-    }
-
-    //---------------------------------ACTOR SETUP--------------------------------
-    @Override
-    protected void handleRestEndpoint(Router router) {
-
-        router.post(getServiceEndpoint()).handler(this::doEventManagement);
-    }
-
-    @Override
-    protected String getServiceEndpoint() {
-        return JPS_EVENT_ENDPOINT_PATH;
-    }
-
-    @Override
-    protected String getRegExpMicroServiceName() {
-        return JPS_EVENT_MICROSERVICE_PATH;
-    }
+//    @Override
+//    protected boolean isSwaggerImplemented() {
+//        return true;
+//    }
+//
+//    //---------------------------------ACTOR SETUP--------------------------------
+//    @Override
+//    protected void handleRestEndpoint(Router router) {
+//
+//        router.post(getServiceEndpoint()).handler(this::doEventManagement);
+//    }
+//
+//    @Override
+//    protected String getServiceEndpoint() {
+//        return JPS_EVENT_ENDPOINT_PATH;
+//    }
+//
+//    @Override
+//    protected String getRegExpMicroServiceName() {
+//        return JPS_EVENT_MICROSERVICE_PATH;
+//    }
 
     @Override
     protected void registerProxy(ServiceBinder serviceBinder) {
@@ -347,7 +349,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
         Integer seqCounter = Math.toIntExact(HttpServerUtils.getParamLongFromUrl("sequenceNumberCounter", routingContext) % Integer.MAX_VALUE);
         String jpsBodyRequest = routingContext.getBodyAsString();
         boolean safe = Boolean.parseBoolean(routingContext.request().headers().get("safe"));
-        String session = context(routingContext).serializeJpsSession();
+        String session = context().serializeJpsSession();
         String peripheralId = HttpServerUtils.getParamStringFromUrl("peripheralId", routingContext);
         session = injectCorrelationId(routingContext, session);
         this.doEventManagement(jpsBodyRequest, seqTs, seqGMT, seqCounter, authToken, peripheralId, session, safe, integerAsyncResult -> {
@@ -371,7 +373,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
 
     private String injectCorrelationId(RoutingContext routingContext, String session) {
         var correlationId = routingContext.request().headers().get("correlationId");
-        if(StringUtils.isEmpty(correlationId))
+        if (StringUtils.isEmpty(correlationId))
             return session;
         var o = new JsonObject(session);
         o.put("correlationId", correlationId);
@@ -419,6 +421,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
 
                                     var sessionJsonObject = new Supplier<JsonObject>() {
                                         private JsonObject wrappedJsonObject;
+
                                         @Override
                                         public JsonObject get() {
                                             if (wrappedJsonObject == null)
@@ -437,8 +440,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
 
                                     // The value of jpsEvent.getSessionId() is null for JblLogVoucherRead events, and session parameter
                                     // has the sessionId. So lets try to set the value of JpsEvent from session parameter.
-                                    if (jpsEvent.getSessionId() == null)
-                                    {
+                                    if (jpsEvent.getSessionId() == null) {
                                         try {
                                             var sessionId = sessionJsonObject.get().getString("sessionid");
 
@@ -446,8 +448,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
                                                 jpsEvent.setSessionId(Long.valueOf(sessionId));
                                                 extendedSession = sessionJsonObject.get().encode();
                                             }
-                                        }
-                                        catch (Exception e) {
+                                        } catch (Exception e) {
                                             logger.error("Failed to parse session id from '" + extendedSession + "'!", e);
                                         }
                                     }
@@ -579,8 +580,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
                         logger.error("The session id in last validation event is null in voucher event for peripheral id=" + peripheralId + "!");
 
                     asyncResultHandler.handle(Future.succeededFuture(lastValidationEvent.getSessionId()));
-                }
-                else {
+                } else {
                     logger.error("Failed to load the last validation event to set the session Id in voucher event for peripheral id=" + peripheralId + "!", findLastValidationEventAsyncResult.cause());
                     asyncResultHandler.handle(Future.succeededFuture(null));
                 }
@@ -589,8 +589,8 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
     }
 
     private void tryProcessRemoteDiscountsOnPaymentCompleted(JBLContext jblContext, String peripheralId, JblEvent jblEvent,
-                                                            String extendedSessionText,
-                                                            Handler<AsyncResult> asyncResultHandler) {
+                                                             String extendedSessionText,
+                                                             Handler<AsyncResult> asyncResultHandler) {
 
         if (SpecCodeEnum.JpsOpUsrPayCompl.getValue() != (jblEvent.getEventSpecCode())) {
             asyncResultHandler.handle(Future.succeededFuture());
@@ -601,14 +601,13 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
         peripheralRemoteDiscountSessionData.getOrLoadRemoteDiscounts(jblContext, jblEvent.getSessionId(), getOrLoadRemoteDiscountsResult -> {
 
             var remoteDiscounts = getOrLoadRemoteDiscountsResult.result();
-            if (!getOrLoadRemoteDiscountsResult.succeeded() || remoteDiscounts == null ) {
+            if (!getOrLoadRemoteDiscountsResult.succeeded() || remoteDiscounts == null) {
                 jblContext.getLogger(JpsEventVerticle.class).error(String.format("Failed to add remote discounts to session data on payment complete=%s, session Id=%s.", peripheralId, jblEvent.getSession()),
                         getOrLoadRemoteDiscountsResult.cause());
 
                 asyncResultHandler.handle(Future.succeededFuture());
                 return;
-            }
-            else if (remoteDiscounts.size() > 0) {
+            } else if (remoteDiscounts.size() > 0) {
 
                 final JsonObject extendedSession = new JsonObject(extendedSessionText);
 
@@ -617,10 +616,10 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
                 for (var remoteDiscountInd = 0; remoteDiscountInd < remoteDiscounts.size(); ++remoteDiscountInd) {
                     var remoteDiscount = remoteDiscounts.get(remoteDiscountInd);
 
-                    extendedSession.put(SessionFields.REMOTE_DISCOUNT_ID + "_"+remoteDiscountInd, remoteDiscount.getDiscountId())
-                            .put(SessionFields.REMOTE_DISCOUNT_ORIGINAL_AMOUNT + "_"+remoteDiscountInd, remoteDiscount.getOriginalAmount())
-                            .put(SessionFields.REMOTE_DISCOUNT_VALUE_DISCOUNTED + "_"+remoteDiscountInd, remoteDiscount.getValueDiscounted())
-                            .put(SessionFields.REMOTE_DISCOUNT_PERCENTAGE_DISCOUNTED + "_"+remoteDiscountInd, remoteDiscount.getDiscountPercentage());
+                    extendedSession.put(SessionFields.REMOTE_DISCOUNT_ID + "_" + remoteDiscountInd, remoteDiscount.getDiscountId())
+                            .put(SessionFields.REMOTE_DISCOUNT_ORIGINAL_AMOUNT + "_" + remoteDiscountInd, remoteDiscount.getOriginalAmount())
+                            .put(SessionFields.REMOTE_DISCOUNT_VALUE_DISCOUNTED + "_" + remoteDiscountInd, remoteDiscount.getValueDiscounted())
+                            .put(SessionFields.REMOTE_DISCOUNT_PERCENTAGE_DISCOUNTED + "_" + remoteDiscountInd, remoteDiscount.getDiscountPercentage());
                 }
 
                 jblEvent.setSession(extendedSession.encode());
@@ -633,8 +632,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
 
                     asyncResultHandler.handle(Future.succeededFuture());
                 });
-            }
-            else {
+            } else {
                 asyncResultHandler.handle(Future.succeededFuture());
             }
         });
@@ -683,8 +681,7 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
             String json = "";
             try {
                 json = JSONUtil.serialize(jblEvent);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 context().getLogger(getClass()).error("Error on serializing jblEvent", e);
                 resultHandler.handle(Future.failedFuture(e));
                 return;
@@ -824,5 +821,30 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
         } catch (InvalidJpsEventTypeException e) {
             instance.getLogger(getClass()).error("Error sending ->sendAlarmForPeripheralOffline", e);
         }
+    }
+
+    @Override
+    public void doEventManagement(long seqTS, int seqGMT, int seqCounter, String peripheralId, ServiceRequest serviceRequest, Handler<AsyncResult<ServiceResponse>> handler) {
+        String jpsBodyRequest = WebApiUtil.payload(serviceRequest);
+        String session = WebApiUtil.session(serviceRequest);
+        String authToken = serviceRequest.getHeaders().get("authToken");
+        boolean safe = Boolean.parseBoolean(serviceRequest.getHeaders().get("safe"));
+        this.doEventManagement(jpsBodyRequest, seqTS, seqGMT, seqCounter, authToken, peripheralId, session, safe, integerAsyncResult -> {
+            if (integerAsyncResult.succeeded()) {
+                if (integerAsyncResult.result() == HttpResponseStatus.UNAUTHORIZED.code()) {
+                    WebApiUtil.unauthorized(handler, new JsonObject().put("status", "UNKNOWN PERIPHERAL WITH ID -> " + peripheralId).encode());
+                } else if (integerAsyncResult.result() == HttpResponseStatus.OK.code()) {
+                    WebApiUtil.success(handler, new JsonObject().put("status", "OK").encode());
+                } else if (integerAsyncResult.result() == HttpResponseStatus.NOT_FOUND.code()) {
+                    WebApiUtil.notFound(handler, new JsonObject().put("status", "NOT FOUND").encode());
+                } else if (integerAsyncResult.result() == HttpResponseStatus.INTERNAL_SERVER_ERROR.code()) {
+                    WebApiUtil.error(handler, new JsonObject().put("status", "GENERIC ERROR").encode());
+                } else if (integerAsyncResult.result() == HttpResponseStatus.BAD_GATEWAY.code()) {
+                    WebApiUtil.error(handler, new JsonObject().put("status", "REQUEST NOT VALID").encode());
+                }
+            } else {
+                WebApiUtil.error(handler, new JsonObject().put("status", "GENERIC ERROR").encode());
+            }
+        });
     }
 }
