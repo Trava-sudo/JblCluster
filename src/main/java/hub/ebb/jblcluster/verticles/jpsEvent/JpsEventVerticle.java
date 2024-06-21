@@ -93,7 +93,6 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
     @Autowired
     private IServiceDiscoveryClient serviceDiscoveryClient;
     @Autowired
-    @Qualifier("jpsAuthenticatedPeripheralAPI")
     private JpsAuthenticatedPeripheralAPI authenticatedPeripheralAPI;
 
     @Autowired

@@ -3,6 +3,7 @@ package hub.ebb.jblcluster.eventservice.service.impl;
 import com.google.common.base.Strings;
 import hub.jbl.common.lib.api.customer.CustomerAPI;
 import hub.jbl.common.lib.api.productprofile.ProductAPI;
+import hub.jbl.common.lib.api.validation.DiscountOnPaymentTypeAPI;
 import hub.jbl.common.lib.context.JBLContext;
 import hub.jbl.common.lib.date.DateUtils;
 import hub.jbl.common.lib.number.MoneyUtils;
@@ -55,7 +56,7 @@ public class JpsContractIssuingServiceImpl implements JpsContractIssuingService 
     @Autowired
     private MembershipMediaTypesDao membershipMediaTypesDao;
     @Autowired
-    private CalculationOfDiscountOnPaymentType calculationOfDiscountOnPaymentType;
+    private DiscountOnPaymentTypeAPI discountOnPaymentTypeAPI;
 
 
     @Override
@@ -128,7 +129,8 @@ public class JpsContractIssuingServiceImpl implements JpsContractIssuingService 
                                 jpsSellableProduct.setStartValidityTs(startValidityTs);
                                 jpsSellableProduct.setEndValidityTs(obj.getLong("endValidityTs"));
 
-                                calculationOfDiscountOnPaymentType.calculationBasedOnPaymentTypes(context, null, jpsSellableProduct, calculatedResult -> {
+                                JsonObject jpsSellableProductJson = new JsonObject(JSONUtil.serialize(jpsSellableProduct));
+                                discountOnPaymentTypeAPI.calculationBasedOnPaymentTypes(null, jpsSellableProductJson, calculatedResult -> {
                                     if (calculatedResult.succeeded() && calculatedResult.result() != null) {
                                         i.incrementAndGet();
                                         obj.mergeIn(calculatedResult.result());
