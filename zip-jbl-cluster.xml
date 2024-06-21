@@ -1,0 +1,29 @@
+<assembly>
+    <id>bin</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>${project.basedir}/target</directory>
+            <outputDirectory>jbl-cluster-module</outputDirectory>
+            <includes>
+                <include>jbl-cluster.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/src/main/resources</directory>
+            <outputDirectory>jbl-cluster-module</outputDirectory>
+            <includes>
+                <include>RestAPI.yaml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}</directory>
+            <outputDirectory>jbl-cluster-module</outputDirectory>
+            <includes>
+                <include>module-config.json</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>
