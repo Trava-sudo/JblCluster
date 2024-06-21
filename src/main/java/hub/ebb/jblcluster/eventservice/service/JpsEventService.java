@@ -4,7 +4,9 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import hub.jbl.common.exception.PrimayKeyDuplicatedException;
 import hub.jbl.common.lib.JblAPIEventBusBundle;
+import hub.jbl.common.lib.R;
 import hub.jbl.common.lib.api.event.EventAPI;
+import hub.jbl.common.lib.api.peripheral.JpsAuthenticatedPeripheralAPI;
 import hub.jbl.common.lib.builder.AsyncResultBuilder;
 import hub.jbl.common.lib.context.JBLContext;
 import hub.jbl.common.lib.context.JBLContextImpl;
@@ -38,10 +40,8 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
-//import hub.onstreet.model.event.JblEventType;
 import hub.jbl.core.dto.jps.authentication.JblInternalPeripheral;
 import hub.jbl.core.dto.jps.authentication.common.JpsPeripheral;
-//import hub.jbl.verticles.authentication.AuthenticationVerticle;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -57,6 +57,7 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
 
     private static final Logger logger = JBLContext.getInstance().getLogger(JpsEventService.class);
     private static EventAPI eventAPI;
+    private static JpsAuthenticatedPeripheralAPI jpsAuthenticatedPeripheralAPI;
     private final String m_fiscalPrinterId_NA = "N/A";
     @Autowired
     private JblEventDao jblEventDAO;
@@ -415,7 +416,7 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
         payCompl.setPrepayed(false);
         payCompl.setPrepayedEndDateTimeTs(null);
         payCompl.setEventSpecCode(usrPass.getEventSpecCode());
-//        payCompl.setEventType(JblEventType.PAYMENT);
+        payCompl.setEventType(R.PAYMENT);
         payCompl.setType(PostPaymentMethodType.BANK_TRANSFER);
         payCompl.setSessionId(0L);
         payCompl.setPeripheralType(JblInternalPeripheral.Peripheral().getPeripheralType());
@@ -496,10 +497,10 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
 
     public static void clientPostEvent(JBLContext jblContext, MultiMap headers, String authToken, IServiceDiscoveryClient serviceDiscoveryClient, JblEventExtendedJbl event, boolean safe, Handler<AsyncResult<Void>> resultHandler) {
 
-//        if (StringUtils.isEmpty(event.getPeripheralId()) && StringUtils.isEmpty(event.getJpsEvent().getPeripheralType())) {
-//            event.setPeripheralId(AuthenticationVerticle.INTERNAL_PERIPHERAL.getPeripheralId());
-//            event.getJpsEvent().setPeripheralType(AuthenticationVerticle.INTERNAL_PERIPHERAL.getType());
-//        }
+        if (StringUtils.isEmpty(event.getPeripheralId()) && StringUtils.isEmpty(event.getJpsEvent().getPeripheralType())) {
+            event.setPeripheralId(R.INTERNAL_PERIPHERAL_ID);
+            event.getJpsEvent().setPeripheralType(R.INTERNAL_PERIPHERAL_ID);
+        }
 
         send(jblContext, headers, event, Objects.requireNonNullElse(authToken, JblInternalPeripheral.INTERNAL_TOKEN), safe, resultHandler);
     }
@@ -541,6 +542,19 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
                 });
     }
 
+    public void getAllAuthenticatedPeripheralsViaProxy(){
+        jpsAuthenticatedPeripheralAPI.getAllPeripherals(listAsyncResult -> {
+            if (listAsyncResult.succeeded()) {
+                listAsyncResult.result().forEach(peripheral -> {
+                    logger.info("Peripheral " + peripheral.getJsonObject("peripheralId") + " of type " + peripheral.getJsonObject("type") + " found.");
+                });
+            } else {
+                logger.error("Error retrieving peripherals.");
+            }
+
+        });
+    }
+
     private static String cleanKey(String key) {
         try {
             if (key.startsWith(JBLContextImpl.JBL_CUSTOM_HEADER_PREFIX)) {
@@ -557,6 +571,7 @@ public class JpsEventService extends AbstractJblService<JblEventExtendedJbl, Jps
     public void afterPropertiesSet() {
         super.afterPropertiesSet();
         eventAPI = EventAPI.createProxy(vertx);
+        jpsAuthenticatedPeripheralAPI = JpsAuthenticatedPeripheralAPI.createProxy(vertx, JpsAuthenticatedPeripheralAPI.ADDRESS);
     }
 
     public void changePrinterStatus(JBLContext context, String peripheralId, FiscalPrinterStatusType fpStatus) {

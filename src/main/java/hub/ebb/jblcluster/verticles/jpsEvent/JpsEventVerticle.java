@@ -41,7 +41,6 @@ import hub.ebb.jblcluster.eventservice.service.JblCounterSourceService;
 import hub.ebb.jblcluster.eventservice.service.JpsEventService;
 import hub.ebb.jblcluster.eventservice.service.MainEventFactory;
 import hub.jbl.core.dto.jps.authentication.common.JpsPeripheral;
-//import hub.jbl.services.authentication.AuthenticationService;
 import hub.jms.common.model.configuration.JblFiscalPrinterConfiguration;
 import hub.jms.common.model.utils.JSONUtil;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -93,8 +92,6 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
     MessageConsumer<String> mc3;
     @Autowired
     private IServiceDiscoveryClient serviceDiscoveryClient;
-//    @Autowired
-//    private AuthenticationService authenticationService;
     @Autowired
     @Qualifier("jpsAuthenticatedPeripheralAPI")
     private JpsAuthenticatedPeripheralAPI authenticatedPeripheralAPI;
@@ -218,7 +215,10 @@ public class JpsEventVerticle extends AbstractRestVerticle implements JpsEventVe
     }
 
     private void initFiscalPrinterStatuses() {
-//        authenticationService.getAllAuthenticatedPeripherals(context()).thenAccept(listAsyncResult -> {
+
+
+        jpsEventService.getAllAuthenticatedPeripheralsViaProxy();
+//        .getAllAuthenticatedPeripherals(context()).thenAccept(listAsyncResult -> {
 //            if (listAsyncResult.succeeded()) {
 //                for (JpsAuthenticatedPeripheral peripheral : listAsyncResult.result()) {
 //                    getFiscalPrinterConfiguration(peripheral.getPeripheralId(), fiscalPrinterConfigurationAsyncResult -> {
