@@ -8,7 +8,6 @@ import hub.ebb.jblcluster.eventservice.service.JpsEventService;
 import hub.ebb.jblcluster.eventservice.service.impl.JpsContractIssuingServiceImpl;
 import hub.ebb.jblcluster.verticles.RestVerticle;
 import hub.ebb.jblcluster.verticles.jpsEvent.JpsEventVerticle;
-import hub.jbl.common.crypto.CryptoPassword;
 import hub.jbl.common.lib.R;
 import hub.jbl.common.lib.api.customer.CustomerAPI;
 import hub.jbl.common.lib.api.event.EventAPI;
@@ -223,7 +222,7 @@ public class JpsEventSpringConfig extends AppSpringConfig {
         hikariConfig.setMinimumIdle(Integer.parseInt(config.getString(prefix + "jdbc.minimumIdle")));
         hikariConfig.setJdbcUrl(jdbcUrl);
         hikariConfig.setUsername(config.getString(prefix + "jdbc.username"));
-        hikariConfig.setPassword(getPwd(config, prefix));
+        hikariConfig.setPassword(config.getString(prefix + "jdbc.password"));
         hikariConfig.setDriverClassName(config.getString(prefix + "jdbc.driverClassName"));
         hikariConfig.setConnectionTestQuery(config.getString(prefix + "jdbc.preferredTestquery"));
         hikariConfig.addDataSourceProperty("cachePrepStmts", config.getString(prefix + "jdbc.cachePrepStmts"));
@@ -246,7 +245,4 @@ public class JpsEventSpringConfig extends AppSpringConfig {
         return hikariConfig;
     }
 
-    private String getPwd(JsonObject config, String prefix) {
-        return CryptoPassword.get(config.getString("jbl.instance.identifier")).deCryptPassword(config.getString(prefix + "jdbc.password"));
-    }
 }
