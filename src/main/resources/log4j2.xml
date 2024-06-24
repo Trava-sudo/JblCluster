@@ -5,8 +5,8 @@
         <Property name="age">7d</Property>
         <Property name="maxsize">512MB</Property>
         <property name="pattern">%d{dd MMM yyyy HH:mm:ss,SSS} [%t] %-5level %logger - %msg%n</property>
-        <Property name="pathfile">${config.file.folder}</Property>
-        <Property name="zippathfile">${config.file.folder}/old</Property>
+        <Property name="pathfile">${log.file.folder}</Property>
+        <Property name="zippathfile">${log.file.folder}/old</Property>
     </properties>
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">

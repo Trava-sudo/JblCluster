@@ -3,6 +3,7 @@ package hub.ebb.jblcluster.eventservice.model;
 import hub.ebb.jblcluster.eventservice.mapper.JblEventMapperVisitor;
 import hub.ebb.jblcluster.eventservice.mapper.JblVisitableEvent;
 import hub.ebb.jblcluster.eventservice.mapper.JmsEvent;
+import hub.jbl.common.lib.api.validation.JpsUsrCardValidationResultAPI;
 import hub.jbl.common.lib.builder.AsyncResultBuilder;
 import hub.jbl.core.dto.jps.cardValidation.CalcType;
 import hub.jbl.core.dto.jps.cardValidation.CarLocationDataDTO;
@@ -18,6 +19,7 @@ import hub.jbl.entity.productProfile.JblProductProfile;
 import hub.jms.common.model.eventParking.EventParkingPrepayType;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
+import io.vertx.core.Handler;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-public class JpsUsrCardValidationResult extends JpsUsrOperation implements JblVisitableEvent {
+public class JpsUsrCardValidationResult extends JpsUsrOperation implements JblVisitableEvent, JpsUsrCardValidationResultAPI {
 
 
     private static final long serialVersionUID = -2497897492648488567L;
@@ -945,6 +947,54 @@ public class JpsUsrCardValidationResult extends JpsUsrOperation implements JblVi
 
     public void setPayWithJp(Boolean payWithJp) {
         this.payWithJp = payWithJp;
+    }
+
+    @Override
+    public void getProvsDiscDescrProxy(Handler<AsyncResult<Void>> handler) {
+        this.getProvsDiscDescr();
+        handler.handle(Future.succeededFuture());
+    }
+
+    @Override
+    public void getCashDiscDescrProxy(Handler<AsyncResult<Void>> handler) {
+        this.getCashDiscDescr();
+        handler.handle(Future.succeededFuture());
+    }
+
+    @Override
+    public void getPosDiscDescrProxy(Handler<AsyncResult<Void>> handler) {
+        this.getPosDiscDescr();
+        handler.handle(Future.succeededFuture());
+    }
+
+    @Override
+    public void getSourceCodeProxy(Handler<AsyncResult<Void>> handler) {
+        this.getSourceCode();
+        handler.handle(Future.succeededFuture());
+    }
+
+    @Override
+    public void getEndValidityTsProxy(Handler<AsyncResult<Void>> handler) {
+        this.getEndValidityTs();
+        handler.handle(Future.succeededFuture());
+    }
+
+    @Override
+    public void getStartValidityTsProxy(Handler<AsyncResult<Void>> handler) {
+        this.getStartValidityTs();
+        handler.handle(Future.succeededFuture());
+    }
+
+    @Override
+    public void getTimeToExitProxy(Handler<AsyncResult<Void>> handler) {
+        this.getTimeToExit();
+        handler.handle(Future.succeededFuture());
+    }
+
+    @Override
+    public void getFreeTimeLeftProxy(Handler<AsyncResult<Void>> handler) {
+        this.getFreeTimeLeft();
+        handler.handle(Future.succeededFuture());
     }
 
     public static class Builder {

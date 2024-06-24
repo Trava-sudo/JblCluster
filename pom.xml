@@ -17,7 +17,7 @@
         <vertx.version>4.5.1</vertx.version>
         <launcher.class>hub.ebb.jblcluster.Launcher</launcher.class>
         <junit-jupiter.version>5.10.1</junit-jupiter.version>
-        <config.file.folder>config</config.file.folder>
+        <log.file.folder>C:/jbl/jbllog/eventServiceModule</log.file.folder>
         <java.version>21</java.version>
     </properties>
 
@@ -102,7 +102,7 @@
         <dependency>
             <groupId>hub.ebb</groupId>
             <artifactId>jbl-core</artifactId>
-            <version>1.30.0.0-jbl-cluster-SNAPSHOT</version>
+            <version>1.30.0.0-jbl-cluster-CV-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>hub.ebb</groupId>
